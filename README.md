@@ -11,16 +11,19 @@ Proof of concept to demonstrate how to use aws-cli and localstack with docker.
 ## Installation
 
 ```bash
-$ docker network create localstack
 $ docker-compose up -d
 ```
     
 ## Usage
 
 ```bash
-alias aaws='docker run --network localstack --env-file ./aws.env --rm -it amazon/aws-cli --endpoint-url=http://localstack:4566'
-aaws s3 mb s3://poc
-aaws s3 ls
+alias aws='docker run --rm -it -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli'
+
+# add `--net=host` and `--endpoint-url http://localhost:4566` to use localstack 
+alias aws='docker run --rm -it -v ~/.aws:/root/.aws -v $(pwd):/aws --net=host amazon/aws-cli --endpoint-url http://localhost:4566'
+
+aws s3 mb s3://poc 
+aws s3 ls
 ```
 
 ## Tech Stack
