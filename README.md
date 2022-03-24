@@ -35,7 +35,6 @@ aws s3 ls
 
 - https://localstack.cloud/
 - https://hub.docker.com/r/amazon/aws-cli
-- https://github.com/localstack/localstack/issues/3088
 
 ## Feedback
 
